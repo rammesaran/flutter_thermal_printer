@@ -88,7 +88,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_thermal_printer:
+  flutter_thermal_printer_pos:
     dependency: "direct main"
     description:
       path: ".."

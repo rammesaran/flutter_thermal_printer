@@ -1,6 +1,6 @@
-# flutter_thermal_printer
+# flutter_thermal_printer_pos
 
-A Flutter plugin for thermal printer support. This plugin provides a bridge to native thermal printer libraries, supporting both TCP/Network and Bluetooth printing with ESC/POS commands.
+A Flutter plugin for thermal printer support with TCP/Network and Bluetooth printing capabilities using ESC/POS commands. This plugin provides a bridge to native thermal printer libraries.
 
 ## Features
 
@@ -28,7 +28,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_thermal_printer: ^0.0.1
+  flutter_thermal_printer_pos: ^0.0.1
 ```
 
 Then run:
@@ -64,34 +64,26 @@ Bluetooth permissions are handled automatically by the plugin.
 ### Import the package
 
 ```dart
-import 'package:flutter_thermal_printer/flutter_thermal_printer.dart';
+import 'package:flutter_thermal_printer_pos/flutter_thermal_printer_pos.dart';
 ```
 
 ### Initialize the plugin
 
 ```dart
-final FlutterThermalPrinter _thermalPrinter = FlutterThermalPrinter();
+// Simple usage - direct method calls
 ```
 
 ### TCP/Network Printing
 
 ```dart
-// Set default configuration (optional)
-_thermalPrinter.setDefaultTcpConfig(PrintTcpConfig(
-  ip: '192.168.1.100',
-  port: 9100,
-  payload: '',
-  timeout: 30000,
-));
-
-// Print with default config
+// Print via TCP/IP
 try {
-  await _thermalPrinter.printTcp(
-    config: PrintTcpConfig(
-      ip: '192.168.1.100',
-      port: 9100,
-      payload: 'Hello World!',
-    ),
+  await FlutterThermalPrinterPos.printTcp(
+    ip: '192.168.1.100',
+    port: 9100,
+    payload: '[C]Hello World!\n[L]This is a test',
+    autoCut: true,
+    openCashbox: false,
   );
   print('Print successful!');
 } catch (e) {
@@ -103,11 +95,9 @@ try {
 
 ```dart
 try {
-  await _thermalPrinter.printBluetooth(
-    PrintBluetoothConfig(
-      payload: 'Hello World!',
-      printerNbrCharactersPerLine: 38,
-    ),
+  await FlutterThermalPrinterPos.printBluetooth(
+    payload: '[C]Hello World!\n[L]Bluetooth test',
+    printerNbrCharactersPerLine: 38,
   );
   print('Print successful!');
 } catch (e) {
@@ -149,18 +139,16 @@ final String receiptContent = '''
 [C]<qrcode size='20'>https://example.com</qrcode>
 ''';
 
-await _thermalPrinter.printTcp(
-  config: PrintTcpConfig(
-    ip: '192.168.1.100',
-    port: 9100,
-    payload: receiptContent,
-  ),
+await FlutterThermalPrinterPos.printTcp(
+  ip: '192.168.1.100',
+  port: 9100,
+  payload: receiptContent,
 );
 ```
 
 ## Configuration Options
 
-### PrintTcpConfig
+### TCP Printing Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -175,7 +163,7 @@ await _thermalPrinter.printTcp(
 | printerNbrCharactersPerLine | int | 42 | Characters per line |
 | timeout | int | 30000 | Connection timeout (ms) |
 
-### PrintBluetoothConfig
+### Bluetooth Printing Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -217,7 +205,11 @@ The plugin throws specific exceptions that you can catch:
 
 ```dart
 try {
-  await _thermalPrinter.printTcp(config: config);
+  await FlutterThermalPrinterPos.printTcp(
+    ip: '192.168.1.100',
+    port: 9100,
+    payload: '[C]Test Print',
+  );
 } catch (e) {
   if (e.toString().contains('INVALID_ARGUMENTS')) {
     print('Invalid printer configuration');

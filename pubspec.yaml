@@ -1,9 +1,9 @@
-name: flutter_thermal_printer
+name: flutter_thermal_printer_pos
 description: "A Flutter plugin for thermal printer support with TCP/Network and Bluetooth printing capabilities using ESC/POS commands."
 version: 0.0.1
-homepage: https://github.com/yourusername/flutter_thermal_printer
-repository: https://github.com/yourusername/flutter_thermal_printer
-issue_tracker: https://github.com/yourusername/flutter_thermal_printer/issues
+homepage: https://github.com/yourusername/flutter_thermal_printer_pos
+repository: https://github.com/yourusername/flutter_thermal_printer_pos
+issue_tracker: https://github.com/yourusername/flutter_thermal_printer_pos/issues
 
 environment:
   sdk: ^3.9.0
@@ -37,10 +37,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_thermal_printer
-        pluginClass: FlutterThermalPrinterPlugin
+        package: com.example.flutter_thermal_printer_pos
+        pluginClass: FlutterThermalPrinterPosPlugin
       ios:
-        pluginClass: FlutterThermalPrinterPlugin
+        pluginClass: FlutterThermalPrinterPosPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

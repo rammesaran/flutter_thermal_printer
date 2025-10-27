@@ -1,4 +1,4 @@
-package com.example.flutter_thermal_printer;
+package com.example.flutter_thermal_printer_pos;
 
 import androidx.annotation.NonNull;
 import android.app.Activity;
@@ -37,8 +37,8 @@ import com.dantsu.escposprinter.EscPosPrinterSize;
 import com.dantsu.escposprinter.EscPosPrinterCommands;
 import com.dantsu.escposprinter.textparser.PrinterTextParserImg;
 
-/** FlutterThermalPrinterPlugin */
-public class FlutterThermalPrinterPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, RequestPermissionsResultListener {
+/** FlutterThermalPrinterPosPlugin */
+public class FlutterThermalPrinterPosPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, RequestPermissionsResultListener {
   private MethodChannel channel;
   private Context context;
   private Activity activity;
@@ -66,7 +66,7 @@ public class FlutterThermalPrinterPlugin implements FlutterPlugin, MethodCallHan
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_thermal_printer");
+    channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_thermal_printer_pos");
     channel.setMethodCallHandler(this);
     context = flutterPluginBinding.getApplicationContext();
     executorService = Executors.newSingleThreadExecutor();

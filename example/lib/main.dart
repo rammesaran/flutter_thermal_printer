@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_thermal_printer/flutter_thermal_printer.dart';
+import 'package:flutter_thermal_printer_pos/flutter_thermal_printer_pos.dart';
 
 void main() {
   runApp(const TestApp());
@@ -43,7 +43,7 @@ class _TestPageState extends State<TestPage> {
     });
 
     try {
-      await FlutterThermalPrinter.printTcp(
+      await FlutterThermalPrinterPos.printTcp(
         ip: _ipController.text,
         port: int.parse(_portController.text),
         payload: '[C]Hello World\n[L]This is a test',
@@ -93,7 +93,7 @@ class _TestPageState extends State<TestPage> {
 [L]
 [L]''';
 
-      await FlutterThermalPrinter.printTcp(
+      await FlutterThermalPrinterPos.printTcp(
         ip: _ipController.text,
         port: int.parse(_portController.text),
         payload: payload,
@@ -136,7 +136,7 @@ class _TestPageState extends State<TestPage> {
 [C]Test Complete!
 [L]''';
 
-      await FlutterThermalPrinter.printTcp(
+      await FlutterThermalPrinterPos.printTcp(
         ip: _ipController.text,
         port: int.parse(_portController.text),
         payload: payload,

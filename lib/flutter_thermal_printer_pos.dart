@@ -1,9 +1,9 @@
 import 'package:flutter/services.dart';
 import 'dart:async';
 
-class FlutterThermalPrinter {
+class FlutterThermalPrinterPos {
   static const MethodChannel _channel = MethodChannel(
-    'flutter_thermal_printer',
+    'flutter_thermal_printer_pos',
   );
 
   // Default configuration similar to React Native package
@@ -30,7 +30,7 @@ class FlutterThermalPrinter {
   /// Example:
   /// ```dart
   /// try {
-  ///   await FlutterThermalPrinter.printTcp(
+  ///   await FlutterThermalPrinterPos.printTcp(
   ///     payload: '[C]<b>Hello World</b>\n[L]Test print',
   ///     ip: '192.168.100.246',
   ///     port: 9100,
@@ -84,7 +84,7 @@ class FlutterThermalPrinter {
   /// Example:
   /// ```dart
   /// try {
-  ///   await FlutterThermalPrinter.printBluetooth(
+  ///   await FlutterThermalPrinterPos.printBluetooth(
   ///     payload: '[C]<b>Hello World</b>\n[L]Bluetooth test',
   ///     printerNbrCharactersPerLine: 38,
   ///   );
@@ -131,7 +131,7 @@ class FlutterThermalPrinter {
   /// Example:
   /// ```dart
   /// try {
-  ///   List<BluetoothDevice> devices = await FlutterThermalPrinter.getBluetoothDevices();
+  ///   List<BluetoothDevice> devices = await FlutterThermalPrinterPos.getBluetoothDevices();
   ///   for (var device in devices) {
   ///     print('Device: ${device.name} - ${device.address}');
   ///   }
@@ -162,9 +162,9 @@ class FlutterThermalPrinter {
   /// Example:
   /// ```dart
   /// try {
-  ///   List<BluetoothDevice> devices = await FlutterThermalPrinter.getBluetoothDevices();
+  ///   List<BluetoothDevice> devices = await FlutterThermalPrinterPos.getBluetoothDevices();
   ///   if (devices.isNotEmpty) {
-  ///     await FlutterThermalPrinter.printBluetoothDevice(
+  ///     await FlutterThermalPrinterPos.printBluetoothDevice(
   ///       address: devices.first.address,
   ///       payload: '[C]<b>Hello from specific device</b>',
   ///     );
